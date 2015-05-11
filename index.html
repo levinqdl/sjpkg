@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>送姜钱包下载</title>
+<meta name="description" content="便捷支付，支付更爽快">
+<meta name="keywords" content="每天团购一次，精品消费指南">
+
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style" content="blank-translucent">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/css.css"/>
+</head>
+<body class="automove">
+
+<div class="center">
+	<div class="model modeli"> <img src="img/phone_bg.png"/>
+		<div class="pageswrapper">
+			<div class="page current"><img class="imgbox" src="img/app_1.png"/></div>
+			<div class="page next"><img class="imgbox" src="img/app_2.png"/></div>
+			<div class="page prev"><img class="imgbox" src="img/app_3.png"/></div>
+			<div class="page prev"><img class="imgbox" src="img/app_4.png"/></div>
+		</div>
+	</div>
+	<ul class="list-text">
+		<li class="active"><img src="img/appt1.png"/>
+		<li><img src="img/appt2.png"/>
+		<li><img src="img/appt3.png"/>
+		<li><img src="img/appt4.png"/>
+	</ul>
+	<a class="down-btn btn" href="javascript:void(0)"  onclick="is_download()">立即下载</a> </div>
+	
+<div class="bottom">
+	<ul class="list-ico">
+		<li class="active"></li>
+	<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<img class="logo" src="img/pay_btn.png"> </div>
+	
+<div id="weixin_tips"  style="display:none;">
+	<div class="mob_tips-bg" onclick="$('#weixin_tips').hide()"></div>
+	<div class="mob_tips">
+		<section class="mob_img"><img src="img/mob_tips2.jpg" alt="哎呀，微信限制跳转了"/></section>
+		<article class="mob_text"><span>点击右上角</span>，选择<span id="hint">在浏览器中打开</span>即可下载</article>
+	</div>
+</div>
+</body>
+<script type='text/javascript'>
+var android_link = "http://www.52songjiang.com/downloadCurrent/member_android";
+
+$(function(){
+  if (/ipad|iphone|mac/i.test(navigator.userAgent)){
+    $("#hint").text("在safari中打开");
+  }
+})
+ 
+function is_download() {
+	var ua = navigator.userAgent.toLowerCase();
+	if (/android/i.test(navigator.userAgent)) {
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			document.getElementById("weixin_tips").style.display = "block";//微信提示浏览器打开
+		} else {
+			window.location = android_link;//安卓系统 直接下载
+		}
+	}else if (/ipad|iphone|mac/i.test(navigator.userAgent)) {
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			document.getElementById("weixin_tips").style.display = "block";//微信提示浏览器打开
+		} else {
+			window.location = "itms-services://?action=download-manifest&url=https://www.52songjiang.com/downloadCurrent/member_ios";
+			//window.location = "itms-services://?action=download-manifest&url=https://www.52songjiang.com/iosDownload/member.plist";//ios 进入应用商店
+		}
+	} else {
+		window.location = android_link;//其他 直接下载
+		}
+
+}
+$(function(){
+	var cur = 1;
+	var scrollx = 1;
+	function autoRun(){//自动轮播函数
+		cur++;
+		var curmax = $(".pageswrapper .page").length;
+		var prev = cur - 2;
+		if(cur == 1){
+			prev = curmax - 1;
+		}
+		var current = cur - 1;
+		
+		var next = cur;
+		if(cur == curmax){
+			next = 0;
+		}
+		$('.pageswrapper .page').eq(current).removeClass("prev").removeClass("next")
+		$(".pageswrapper .page").eq(current).addClass('current');
+		
+		$('.pageswrapper .page').eq(prev).removeClass("current").removeClass("next")
+		$(".pageswrapper .page").eq(prev).addClass('prev');
+		
+		$('.pageswrapper .page').eq(next).removeClass("prev").removeClass("current")
+		$(".pageswrapper .page").eq(next).addClass('next');
+		
+		
+		$(".list-ico li").eq(current).addClass('active');
+        $(".list-ico li").eq(current).siblings().removeClass('active')	
+		
+		$(".list-text li").eq(current).addClass('active');
+        $(".list-text li").eq(current).siblings().removeClass('active')	
+		
+		cur = (cur==curmax)?0:cur;//判断cur是否该变化
+
+	}
+	var timer = setInterval(autoRun,3000);//定时器设立
+
+})
+  </script>
+
+</html>
