@@ -43,12 +43,12 @@ body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: .
 .automove .mob_tips .mob_text span{ color:#ea1d5d; line-height:.30rem;}
 .automove .mob_tips{
 	animation-name:mob_dowtips;
-	animation-delay:mob_dowtips 1s;
-	-webkit-animation-delay:mob_dowtips 1s;
-	-o-animation-delay:mob_dowtips 1s;
-	animation:mob_dowtips 2s;
-	-webkit-animation:mob_dowtips 2s; 
-	-o-animation:mob_dowtips 2s; 
+	animation-delay:mob_dowtips 0s;
+	-webkit-animation-delay:mob_dowtips 0s;
+	-o-animation-delay:mob_dowtips 0s;
+	animation:mob_dowtips .3s;
+	-webkit-animation:mob_dowtips .3s; 
+	-o-animation:mob_dowtips .3s; 
 }
 
 
